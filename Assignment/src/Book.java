@@ -93,7 +93,7 @@ public abstract class Book implements Serializable{
 			System.out.println();
 			if (!isIssued()==true || i != issuedHistory.size()-1){
 			System.out.printf("%1$s %2$tB %2$td, %2$tY", 
-                    "Issued on : ", issuedHistory.get(i).getReturnDate());
+                    "Returned on : ", issuedHistory.get(i).getReturnDate());
 			}
 			System.out.println();
 		}
