@@ -41,4 +41,16 @@ public class IssueBook extends Book implements Serializable{
 			return true;
 		}
 	}
+	
+	public RefBook makeRefBook(){
+		RefBook newRef = new RefBook();
+		newRef.setID(this.getID());
+		newRef.setTitle(this.getTitle());
+		newRef.setYearOfPublication(this.getYearOfPublication());
+		newRef.setDateOfPurchase(this.getDateOfPurchase());
+		newRef.setPrice(this.getPrice());
+		newRef.setPublisher(this.getPublisher());
+		newRef.setNumIssues(this.getNumIssues());
+		return newRef;
+	}
 }

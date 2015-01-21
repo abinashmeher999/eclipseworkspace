@@ -1,7 +1,6 @@
 import java.util.ArrayList;
 import java.io.Serializable;
 import java.util.Date;
-import java.io.ObjectOutputStream;
 
 public abstract class Book implements Serializable{
 	/**
@@ -10,13 +9,13 @@ public abstract class Book implements Serializable{
 	private int ID;
 	private String title;
 	private String yearOfPublication;
-	private String dateOfPurchase;
+	private Date dateOfPurchase;
 	private double price;
 	private String publisher;
 	protected Boolean issuable;
 	protected Boolean isIssued;
 	private long numberOfTimesIssued;
-	protected ArrayList<Log> issuedHistory;
+	protected ArrayList<Log> issuedHistory = new ArrayList<>();
 	
 	public Boolean isIssuable(){
 		return issuable;
@@ -50,11 +49,11 @@ public abstract class Book implements Serializable{
 		this.yearOfPublication = yearOfPublication;
 	}
 
-	public String getDateOfPurchase() {
+	public Date getDateOfPurchase() {
 		return dateOfPurchase;
 	}
 
-	public void setDateOfPurchase(String dateOfPurchase) {
+	public void setDateOfPurchase(Date dateOfPurchase) {
 		this.dateOfPurchase = dateOfPurchase;
 	}
 
