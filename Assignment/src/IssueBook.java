@@ -4,15 +4,17 @@ public class IssueBook extends Book implements Serializable{
 	/**
 	 * 
 	 */
+	//public boolean isIssued;
 	public IssueBook(){
 		issuable = true;
+		isIssued = false;
 		setNumIssues(0);
 	}
 	
-	public Log issue(Friend friend){
-		if (this.isIssued==true){
-			Log nullLog = new Log(null,null);//fix this
-			return nullLog;
+	public boolean issue(Friend friend){
+		if (this.isIssued()==true){
+			System.out.println("This book has been issued!");
+			return false;
 		}else{
 			Log entry = new Log(this,friend);
 			this.isIssued = true;
@@ -20,7 +22,7 @@ public class IssueBook extends Book implements Serializable{
 			this.setNumIssues(getNumIssues()+1);
 			friend.issueHistory.add(entry);
 			friend.booksIssued.add(this);
-			return entry;
+			return true;
 		}
 	}
 	
@@ -52,5 +54,17 @@ public class IssueBook extends Book implements Serializable{
 		newRef.setPublisher(this.getPublisher());
 		newRef.setNumIssues(this.getNumIssues());
 		return newRef;
+	}
+	
+	public void issueQuery(){
+		if (this.isIssued()){
+			System.out.println("Book : "+this.getTitle()+" ID "+this.getID());
+			System.out.println("Issued to :"+this.getIssueHistory().get(this.getIssueHistory().size()-1).getPerson());
+			System.out.printf("%1$s %2$tB %2$td, %2$tY", 
+                    "Issued on : ", this.getIssueHistory().get(this.getIssueHistory().size()-1).getIssueDate());
+			System.out.println("");
+		} else {
+			System.out.println("Not issued to anyone");
+		}
 	}
 }

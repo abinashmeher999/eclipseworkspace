@@ -9,8 +9,8 @@ public class Friend implements Serializable{
 	private String address;
 	private String lnumber;
 	private String mnumber;
-	public ArrayList<Log> issueHistory;
-	public ArrayList<IssueBook> booksIssued;
+	public ArrayList<Log> issueHistory = new ArrayList<Log>();
+	public ArrayList<IssueBook> booksIssued = new ArrayList<IssueBook>();
 	
 	public String getAddress() {
 		return address;

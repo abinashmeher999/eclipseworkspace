@@ -28,4 +28,20 @@ public class Log {
 	public int getBookID(){
 		return bookID;
 	}
+
+	public int getPersonID() {
+		return personID;
+	}
+	
+	public String getPerson(){
+		return personName;
+	}
+	
+	public Date getIssueDate(){
+		return issueDate;
+	}
+	
+	public Date getReturnDate(){
+		return returnDate;
+	}
 }

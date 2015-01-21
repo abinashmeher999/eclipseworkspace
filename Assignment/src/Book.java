@@ -15,13 +15,13 @@ public abstract class Book implements Serializable{
 	protected Boolean issuable;
 	protected Boolean isIssued;
 	private long numberOfTimesIssued;
-	protected ArrayList<Log> issuedHistory = new ArrayList<>();
+	protected ArrayList<Log> issuedHistory = new ArrayList<Log>();
 	
 	public Boolean isIssuable(){
 		return issuable;
 	}
 	
-	public Boolean isIssued(){
+	public boolean isIssued(){
 		return isIssued;
 	}
 
@@ -79,6 +79,24 @@ public abstract class Book implements Serializable{
 
 	protected void setNumIssues(long numberOfTimesIssued) {
 		this.numberOfTimesIssued = numberOfTimesIssued;
+	}
+	
+	public ArrayList<Log> getIssueHistory(){
+		return issuedHistory;
+	}
+	
+	public void traceIssueHistory(){
+		for (int i = 0 ; i < issuedHistory.size() ; i++){
+			System.out.println("Issued to "+issuedHistory.get(i).getPerson());
+			System.out.printf("%1$s %2$tB %2$td, %2$tY", 
+                    "Issued on : ", issuedHistory.get(i).getIssueDate());
+			System.out.println();
+			if (!isIssued()==true || i != issuedHistory.size()-1){
+			System.out.printf("%1$s %2$tB %2$td, %2$tY", 
+                    "Issued on : ", issuedHistory.get(i).getReturnDate());
+			}
+			System.out.println();
+		}
 	}
 }
 
