@@ -96,6 +96,7 @@ public abstract class Book implements Serializable{
                     "Returned on : ", issuedHistory.get(i).getReturnDate());
 			}
 			System.out.println();
+			System.out.println();
 		}
 	}
 }

@@ -22,12 +22,14 @@ public class IssueBook extends Book implements Serializable{
 			this.setNumIssues(getNumIssues()+1);
 			friend.issueHistory.add(entry);
 			friend.booksIssued.add(this);
+			System.out.println("Issue successful.\n");
 			return true;
 		}
 	}
 	
 	public Boolean returnBack(Friend friend){
 		if (this.isIssued == false){
+			System.out.println("Unissued book cannot be returned.\n");
 			return false;
 		}else{
 			this.issuedHistory.get(this.issuedHistory.size()-1).setReturnDate();
@@ -40,6 +42,7 @@ public class IssueBook extends Book implements Serializable{
 				}
 			}
 			this.isIssued = false;
+			System.out.println("Successfully returned.\n");
 			return true;
 		}
 	}
