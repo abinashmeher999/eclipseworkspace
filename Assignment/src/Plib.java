@@ -18,7 +18,7 @@ public class Plib implements Serializable {
      */
     private static int bookIDCounter = 0;
     private static int friendIDCounter = 0;
-    private static double totalCostOfBooks;
+    private static double totalCostOfBooks=0.0;
     static ArrayList<Book> books = new ArrayList<Book>();
     ;
 	static ArrayList<Friend> currentUsers = new ArrayList<Friend>();
@@ -77,6 +77,7 @@ public class Plib implements Serializable {
         System.out.println("LandLine : " + friend.getLnumber());
         System.out.println("Mobile : " + friend.getMnumber());
         System.out.println("Address : " + friend.getAddress());
+        System.out.println();
         return;
     }
 
@@ -125,7 +126,7 @@ public class Plib implements Serializable {
                 return true;
             }
         }
-        System.out.println("Book not found!");
+        System.out.println("Book not found!\n");
         return false;
     }
 
@@ -141,7 +142,7 @@ public class Plib implements Serializable {
             }
         }
         if (i == books.size()) {
-            System.out.println("Book not found!");
+            System.out.println("Book not found!\n");
         }
 
         return false;
@@ -215,17 +216,17 @@ public class Plib implements Serializable {
         currentUsers.add(newFriend);
         Thread displayThread = new Thread("Display") {
             public void run() {
-                System.out.println("--Thread: " + getName() + " running--");
+                System.out.println("--Thread: " + getName() + " running--\n");
                 printFriend(currentUsers.get(currentUsers.size() - 1));
-                System.out.println("--Thread: " + getName() + " finished--");
+                System.out.println("--Thread: " + getName() + " finished--\n");
             }
         };
 
         Thread writeThread = new Thread("Write") {
             public void run() {
-                System.out.println("--Thread: " + getName() + " running--");
+                System.out.println("--Thread: " + getName() + " running--\n");
                 writeFriend(friendFileName);
-                System.out.println("--Thread: " + getName() + " finished--");
+                System.out.println("--Thread: " + getName() + " finished--\n");
             }
         };
 
@@ -243,7 +244,7 @@ public class Plib implements Serializable {
                 return true;
             }
         }
-        System.out.println("Friend not found!");
+        System.out.println("Friend not found!\n");
         return false;
     }
 
@@ -278,21 +279,23 @@ public class Plib implements Serializable {
         int option = 0;
         int secondOption = 0;
         while (option != -1) {
-            System.out.println("Part 1 of Assignment : 1");
-            System.out.println("Part 2 of Assignment : 2");
+        	System.out.println();
+            System.out.println("Part 1 (Books) : 1");
+            System.out.println("Part 2 (Friends and Issue) : 2");
             System.out.println("Exit : 3");
             option = input.nextInt();
             input.nextLine();
             switch (option) {
                 case 1:
                     while (secondOption != -1) {
+                    	System.out.println();
                         System.out.println("Create Book: 1");
                         System.out.println("Delete Book: 2");
                         System.out.println("Display Books: 3");
                         System.out.println("Make Unissuable: 4");
                         System.out.println("Search for a Book: 5");
                         System.out.println("View total cost: 6");
-                        System.out.println("Exit library: 7");
+                        System.out.println("Back: 7");
                         secondOption = input.nextInt();
                         input.nextLine();
                         switch (secondOption) {
@@ -320,7 +323,7 @@ public class Plib implements Serializable {
                                 int j = input.nextInt();
                                 input.nextLine();
                                 if (j == -1) {
-                                    System.out.println("Making Referrence cancelled!");
+                                    System.out.println("Making Referrence cancelled!\n");
                                 } else {
                                     makeUnissuable(j);
                                 }
@@ -329,7 +332,9 @@ public class Plib implements Serializable {
                             case 5:
                                 System.out.println("Enter the keyword :");
                                 String key = input.nextLine();
-                                search(key);
+                                if(!search(key)){
+                                	System.out.println("No Search Results!\n");
+                                }
                                 secondOption = 0;
                                 break;
                             case 6:
@@ -341,7 +346,7 @@ public class Plib implements Serializable {
                                 break;
 
                             default:
-                                System.out.println("Please Enter a VALID INPUT!");
+                                System.out.println("Please Enter a VALID INPUT!\n");
                                 secondOption = 0;
                                 break;
                         }
@@ -351,6 +356,7 @@ public class Plib implements Serializable {
                     break;
                 case 2:
                     while (secondOption != -1) {
+                    	System.out.println();
                         System.out.println("Create friend record : 1");
                         System.out.println("Delete friend record : 2");
                         System.out.println("Modify friend record: 3");
@@ -361,7 +367,7 @@ public class Plib implements Serializable {
                         System.out.println("Query book : 8");
                         System.out.println("Display statistics : 9");
                         System.out.println("Trace book issue history : 10");
-                        System.out.println("Exit : 11");
+                        System.out.println("Back : 11");
                         secondOption = input.nextInt();
                         input.nextLine();
                         switch (secondOption) {
@@ -374,7 +380,7 @@ public class Plib implements Serializable {
                                 int k = input.nextInt();
                                 input.nextLine();
                                 if (k == -1) {
-                                    System.out.println("Delete cancelled!");
+                                    System.out.println("Delete cancelled!\n");
                                 } else {
                                     deleteFriend(k);
                                 }
@@ -385,7 +391,7 @@ public class Plib implements Serializable {
                                 int m = input.nextInt();
                                 input.nextLine();
                                 if (m == -1) {
-                                    System.out.println("Delete cancelled!");
+                                    System.out.println("Modification cancelled!\n");
                                 } else {
                                     for (int z = 0; z < currentUsers.size(); z++) {
                                         if (currentUsers.get(z).getID() == m) {
@@ -395,7 +401,7 @@ public class Plib implements Serializable {
                                                 System.out.println("1 : LandLine");
                                                 System.out.println("2 : Mobile");
                                                 System.out.println("3 : Address");
-                                                System.out.println("4 : Exit");
+                                                System.out.println("4 : Back");
                                                 mod = input.nextInt();
                                                 input.nextLine();
                                                 switch (mod) {
@@ -418,7 +424,7 @@ public class Plib implements Serializable {
                                                         mod = -1;
                                                         break;
                                                     default:
-                                                        System.out.println("Invalid Input");
+                                                        System.out.println("Invalid Input!\n");
                                                         mod = 0;
                                                         break;
                                                 }
@@ -431,7 +437,9 @@ public class Plib implements Serializable {
                             case 4:
                                 System.out.println("Enter the keyword :");
                                 String key = input.nextLine();
-                                searchFriend(key);
+                                if(!searchFriend(key)){
+                                	System.out.println("No Search Results!\n");
+                                }
                                 secondOption = 0;
                                 break;
                             case 5:
@@ -453,7 +461,7 @@ public class Plib implements Serializable {
                                     }
                                 }
                                 if (f == books.size()) {
-                                    System.out.println("Book Not Found!");
+                                    System.out.println("Book Not Found!\n");
                                     break;
                                 }
                                 Friend tempFriend = null;
@@ -466,7 +474,7 @@ public class Plib implements Serializable {
                                     }
                                 }
                                 if (v == currentUsers.size()) {
-                                    System.out.println("Friend Not Found!");
+                                    System.out.println("Friend Not Found!\n");
                                     break;
                                 }
                                 tempBook.issue(tempFriend);
@@ -490,7 +498,7 @@ public class Plib implements Serializable {
                                     }
                                 }
                                 if (f2 == books.size()) {
-                                    System.out.println("Book Not Found!");
+                                    System.out.println("Book Not Found!\n");
                                     break;
                                 }
                                 Friend tempFriend2 = null;
@@ -502,7 +510,7 @@ public class Plib implements Serializable {
                                     }
                                 }
                                 if (v2 == currentUsers.size()) {
-                                    System.out.println("Friend Not Found!");
+                                    System.out.println("Friend Not Found!\n");
                                     break;
                                 }
                                 tempBook2.returnBack(tempFriend2);
@@ -524,7 +532,7 @@ public class Plib implements Serializable {
                                     }
                                 }
                                 if (a == books.size()) {
-                                    System.out.println("Book Not Found!");
+                                    System.out.println("Book Not Found!\n");
                                     break;
                                 }
                                 secondOption = 0;
