@@ -20,7 +20,6 @@ public class Plib implements Serializable {
     private static int friendIDCounter = 0;
     private static double totalCostOfBooks=0.0;
     static ArrayList<Book> books = new ArrayList<Book>();
-    ;
 	static ArrayList<Friend> currentUsers = new ArrayList<Friend>();
     static String fileName = "Data.dat";
     static String friendFileName = "Users.dat";
