@@ -429,9 +429,11 @@ public class Plib implements Serializable {
                                                         break;
                                                 }
                                             }
+                                            printFriend(tempFriend);
                                         }
                                     }
                                 }
+                                
                                 secondOption = 0;
                                 break;
                             case 4:
